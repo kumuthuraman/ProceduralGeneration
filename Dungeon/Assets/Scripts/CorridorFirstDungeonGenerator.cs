@@ -73,10 +73,10 @@ public class CorridorFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         int roomToCreateCount = Mathf.RoundToInt(potentialRoomPositions.Count * roomPercent);
 
         List<Vector2Int> roomsToCreate = potentialRoomPositions.OrderBy(x => Guid.NewGuid()).Take(roomToCreateCount).ToList();
-
         foreach (var roomPosition in roomsToCreate)
         {
             var roomFloor = RunRandomWalk(randomWalkParameters, roomPosition);
+
             roomPositions.UnionWith(roomFloor);
         }
         return roomPositions;
