@@ -16,6 +16,33 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
     [SerializeField]
     private bool randomWalkRooms = false;
 
+    public static bool newLevel;
+
+    // // Add this method
+    // public void GenerateNewDungeon()
+    // {
+    //     RunProceduralGeneration();
+    // }
+    private void Update()
+    {
+        if (newLevel)
+        {
+            foreach (GameObject enemy in GameObject.FindGameObjectsWithTag("Enemy"))
+            {
+                Destroy(enemy);
+            }
+            foreach (GameObject exit in GameObject.FindGameObjectsWithTag("Finish"))
+            {
+                Destroy(exit);
+            }
+            foreach (GameObject player in GameObject.FindGameObjectsWithTag("Player"))
+            {
+                Destroy(player);
+            }
+            RunProceduralGeneration();
+        }
+    }
+
     // added this method so that the dungeon would be generated when the game starts
     private void Awake()
     {
@@ -24,6 +51,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
 
     protected override void RunProceduralGeneration()
     {
+        newLevel = false;
         CreateRooms();
     }
 
@@ -87,7 +115,7 @@ public class RoomFirstDungeonGenerator : SimpleRandomWalkDungeonGenerator
         foreach (var center in enemyRooms)
         {
             // Determine the random number of enemies to generate within the range of 1 to 5
-            int numberOfEnemies = Random.Range(1, 6);
+            int numberOfEnemies = Random.Range(1, 5);
 
             // Generate the specified number of enemies around the center
             for (int i = 0; i < numberOfEnemies; i++)

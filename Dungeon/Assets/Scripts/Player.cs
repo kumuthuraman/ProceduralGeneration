@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 5f; // Adjust the speed as needed
     private Rigidbody2D rb;
+    public GameObject exitPrefab;
 
     private void Start()
     {
@@ -24,6 +25,17 @@ public class PlayerMovement : MonoBehaviour
 
         // Apply movement
         rb.velocity = movement * moveSpeed;
-        
+
+        // // Check if the player is overlapping with the exit prefab
+        // Collider2D exitCollider = Physics2D.OverlapCircle(transform.position, 0.5f, exitPrefab.layer);
+
+        // // Log the exit collider to the console
+        // Debug.Log(exitCollider);
+
+        // if (exitCollider != null)
+        // {
+        //     // Generate a new dungeon
+        //     GenerateNewDungeon();
+        // }
     }
 }
